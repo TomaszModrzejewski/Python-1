@@ -18,7 +18,7 @@ class Matrix:
         """
 
         self.row, self.column = row, column
-        self.array = [[default_value for c in range(column)] for r in range(row)]
+        self.array = [[default_value for _ in range(column)] for _ in range(row)]
 
     def __str__(self):
         """
@@ -39,8 +39,7 @@ class Matrix:
         # Make string and return
         def single_line(row_vector):
             nonlocal string_format_identifier
-            line = "["
-            line += ", ".join(string_format_identifier % (obj,) for obj in row_vector)
+            line = "[" + ", ".join(string_format_identifier % (obj,) for obj in row_vector)
             line += "]"
             return line
 

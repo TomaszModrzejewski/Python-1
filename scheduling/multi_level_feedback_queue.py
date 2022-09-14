@@ -52,10 +52,10 @@ class MLFQ:
         >>> mlfq.calculate_sequence_of_finish_queue()
         ['P2', 'P4', 'P1', 'P3']
         """
-        sequence = []
-        for i in range(len(self.finish_queue)):
-            sequence.append(self.finish_queue[i].process_name)
-        return sequence
+        return [
+            self.finish_queue[i].process_name
+            for i in range(len(self.finish_queue))
+        ]
 
     def calculate_waiting_time(self, queue: list[Process]) -> list[int]:
         """
@@ -69,10 +69,7 @@ class MLFQ:
         >>> mlfq.calculate_waiting_time([P1, P2, P3, P4])
         [83, 17, 94, 101]
         """
-        waiting_times = []
-        for i in range(len(queue)):
-            waiting_times.append(queue[i].waiting_time)
-        return waiting_times
+        return [item.waiting_time for item in queue]
 
     def calculate_turnaround_time(self, queue: list[Process]) -> list[int]:
         """
@@ -86,10 +83,7 @@ class MLFQ:
         >>> mlfq.calculate_turnaround_time([P1, P2, P3, P4])
         [136, 34, 162, 125]
         """
-        turnaround_times = []
-        for i in range(len(queue)):
-            turnaround_times.append(queue[i].turnaround_time)
-        return turnaround_times
+        return [item.turnaround_time for item in queue]
 
     def calculate_completion_time(self, queue: list[Process]) -> list[int]:
         """
@@ -103,10 +97,7 @@ class MLFQ:
         >>> mlfq.calculate_turnaround_time([P1, P2, P3, P4])
         [136, 34, 162, 125]
         """
-        completion_times = []
-        for i in range(len(queue)):
-            completion_times.append(queue[i].stop_time)
-        return completion_times
+        return [item.stop_time for item in queue]
 
     def calculate_remaining_burst_time_of_processes(
         self, queue: deque[Process]
@@ -205,7 +196,7 @@ class MLFQ:
         """
         finished: deque[Process] = deque()  # sequence deque of terminated process
         # just for 1 cycle and unfinished processes will go back to queue
-        for i in range(len(ready_queue)):
+        for _ in range(len(ready_queue)):
             cp = ready_queue.popleft()  # current process
 
             # if process's arrival time is later than current time, update current time
