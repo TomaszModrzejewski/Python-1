@@ -110,7 +110,7 @@ def jacobi_iteration_method(
     strictly_diagonally_dominant(table)
 
     # Iterates the whole matrix for given number of times
-    for i in range(iterations):
+    for _ in range(iterations):
         new_val = []
         for row in range(rows):
             temp = 0
@@ -144,11 +144,9 @@ def strictly_diagonally_dominant(table: NDArray[float64]) -> bool:
 
     rows, cols = table.shape
 
-    is_diagonally_dominant = True
-
-    for i in range(0, rows):
+    for i in range(rows):
         sum = 0
-        for j in range(0, cols - 1):
+        for j in range(cols - 1):
             if i == j:
                 continue
             else:
@@ -157,7 +155,7 @@ def strictly_diagonally_dominant(table: NDArray[float64]) -> bool:
         if table[i][i] <= sum:
             raise ValueError("Coefficient matrix is not strictly diagonally dominant")
 
-    return is_diagonally_dominant
+    return True
 
 
 # Test Cases

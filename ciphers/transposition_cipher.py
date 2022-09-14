@@ -19,7 +19,7 @@ def main() -> None:
         text = decryptMessage(key, message)
 
     # Append pipe symbol (vertical bar) to identify spaces at the end.
-    print(f"Output:\n{text + '|'}")
+    print(f"Output:\n{text}|")
 
 
 def encryptMessage(key: int, message: str) -> str:
